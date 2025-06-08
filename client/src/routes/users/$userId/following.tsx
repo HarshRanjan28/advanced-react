@@ -1,7 +1,7 @@
 import { InfiniteScrolling } from "@/features/shared/components/infinteScrolling";
 import { UserfollowButton } from "@/features/users/components/UserfollowButton";
 import { UserList } from "@/features/users/components/UserList";
-import { isTRPCClientError, trpc, trpcQueryUtils } from "@/router";
+import { isTRPCClientError, trpc } from "@/router";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { z } from "zod";
 

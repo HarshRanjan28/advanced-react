@@ -58,6 +58,8 @@ export function CreateCommentForm({ experience }: CommentCreateFormProps) {
         user: currentUser,
         updatedAt: new Date().toISOString(),
         createdAt: new Date().toISOString(),
+        isLiked:false,
+        likesCount:0
       };
 
       utils.comments.byExperienceId.setData(
