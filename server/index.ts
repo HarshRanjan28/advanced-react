@@ -35,7 +35,7 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: env.CLIENT_BASE_URL,
+    origin: '*',
     credentials: true,
   }),
 );
