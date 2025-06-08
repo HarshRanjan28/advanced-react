@@ -1,0 +1,39 @@
+import Link from "@/features/shared/components/ui/Link";
+import { User } from "@advanced-react/server/database/schema";
+import { UserAvatar } from "./UserAvatar";
+
+type UserAvatarListProps = {
+  users: User[];
+  totalCount: number;
+  limit?: number;
+};
+
+export function UserAvatarList({
+  users,
+  totalCount,
+  limit=5,
+}: UserAvatarListProps) {
+  const displayedUsers = users.slice(0, limit);
+  const remainingCount = totalCount - limit;
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      {displayedUsers.map((user) => (
+        <Link
+          key={user.id}
+          to="/users/$userId"
+          params={{ userId: user.id }}
+          className="hover:opacity-1"
+        >
+          <UserAvatar user={user} showName={false} />
+        </Link>
+      ))}
+
+      {remainingCount > 0 && (
+        <div className="ng-neutral-100 flex h-10 w-10 items-center justify-center rounded-full text-sm font-medium text-neutral-600 dark:bg-neutral-800 dark:text-neutral-400">
+          +{remainingCount}
+        </div>
+      )}
+    </div>
+  );
+}

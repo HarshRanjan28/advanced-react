@@ -480,7 +480,7 @@ export const experienceRouter = router({
         imagePath = await writeFile(input.image);
       }
 
-      return await db
+      const experiences = await db
         .insert(experiencesTable)
         .values({
           title: input.title,
@@ -494,6 +494,8 @@ export const experienceRouter = router({
           updatedAt: new Date().toISOString(),
         })
         .returning();
+
+      return experiences[0];
     }),
 
   edit: protectedProcedure

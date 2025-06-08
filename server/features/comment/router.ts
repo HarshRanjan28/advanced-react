@@ -104,18 +104,18 @@ export const commentRouter = router({
         .values({
           experienceId: input.experienceId,
           content: input.content,
-          userId: ctx.user.id,
+          userId: ctx.user?.id,
           createdAt: now,
           updatedAt: now,
         })
         .returning();
 
-      if (experience.userId !== ctx.user.id) {
+      if (experience.userId !== ctx.user?.id) {
         await db.insert(notificationsTable).values({
           type: "user_commented_experience",
           commentId: comment[0].id,
           experienceId: input.experienceId,
-          fromUserId: ctx.user.id,
+          fromUserId: ctx.user?.id,
           userId: experience.userId,
           createdAt: now,
         });
@@ -143,7 +143,7 @@ export const commentRouter = router({
         });
       }
 
-      if (comment.userId !== ctx.user.id) {
+      if (comment.userId !== ctx.user?.id) {
         throw new TRPCError({
           code: "FORBIDDEN",
           message: "You can only edit your own comments",
