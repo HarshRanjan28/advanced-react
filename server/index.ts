@@ -11,6 +11,7 @@ import { notificationRouter } from "./features/notification/router";
 import { tagRouter } from "./features/tag/router";
 import { userRouter } from "./features/user/router";
 import { createContext, router } from "./trpc";
+import { env } from "./utils/env";
 
 const appRouter = router({
   auth: authRouter,
@@ -34,7 +35,7 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: '*',
+    origin: env.CLIENT_BASE_URL,
     credentials: true,
   }),
 );
